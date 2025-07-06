@@ -202,7 +202,8 @@ export class AppStoreConnectService {
           name: appAttributes.name || 'Unknown App',
           bundleId: appAttributes.bundleId || 'unknown',
           version: version || 'unknown',
-          appStoreState: appStoreState || 'unknown'
+          appStoreState: appStoreState || 'unknown',
+          appStoreUrl: appId ? `https://itunes.apple.com/app/${appId}` : undefined
         }
       }
 
@@ -217,7 +218,8 @@ export class AppStoreConnectService {
             name: appResponse.data.attributes.name || 'Unknown App',
             bundleId: appResponse.data.attributes.bundleId || 'unknown',
             version: version || 'unknown',
-            appStoreState: appStoreState || 'unknown'
+            appStoreState: appStoreState || 'unknown',
+            appStoreUrl: `https://itunes.apple.com/app/${appId}`
           }
         }
       }
