@@ -1,0 +1,55 @@
+{
+  "messages": {
+    "appVersionStatusUpdated": "🚀 App Version Status Updated",
+    "webhookTestPing": "🔄 Webhook Test Ping",
+    "unhandledAppStoreEvent": "📬 Unhandled App Store Event",
+    "appStoreEvent": "App Store Event"
+  },
+  "fields": {
+    "currentStatus": "Current Status",
+    "previousStatus": "Previous Status",
+    "timestamp": "Timestamp",
+    "versionId": "Version ID",
+    "pingId": "Ping ID",
+    "rawPayload": "Raw Payload",
+    "appStore": "App Store"
+  },
+  "actions": {
+    "viewOnAppStore": "View on App Store",
+    "viewOnAppStoreLink": "🔗 View on App Store"
+  },
+  "success": {
+    "slack": "✅ Slack message sent successfully.",
+    "teams": "✅ Teams message sent successfully.",
+    "discord": "✅ Discord message sent successfully."
+  },
+  "error": {
+    "slack": "❌ Failed to send Slack message:",
+    "teams": "❌ Failed to send Teams message:",
+    "discord": "❌ Failed to send Discord message:"
+  },
+  "service": {
+    "activitySubtitle": "App Store Connect via Proxy",
+    "summary": "App Store Webhook"
+  },
+  "status": {
+    "PREPARE_FOR_SUBMISSION": "Preparing submission",
+    "READY_FOR_REVIEW": "Ready for App Store review",
+    "WAITING_FOR_REVIEW": "Waiting for App Store review",
+    "IN_REVIEW": "Currently being reviewed by App Store",
+    "PENDING_CONTRACT": "Waiting for contract approval",
+    "PENDING_APPLE_RELEASE": "Approved, awaiting Apple release",
+    "PENDING_DEVELOPER_RELEASE": "Approved, pending developer release",
+    "PROCESSING_FOR_APP_STORE": "Processing for App Store",
+    "PROCESSING_FOR_DISTRIBUTION": "Processing for distribution",
+    "READY_FOR_DISTRIBUTION": "Ready for distribution",
+    "REJECTED": "Rejected by App Store",
+    "METADATA_REJECTED": "Metadata rejected",
+    "DEVELOPER_REJECTED": "Rejected by developer",
+    "REMOVED_FROM_SALE": "Removed from sale",
+    "DEVELOPER_REMOVED_FROM_SALE": "Removed from sale by developer",
+    "PREORDER_READY_FOR_SALE": "Ready for preorder sale",
+    "READY_FOR_SALE": "Live on the App Store",
+    "APPROVED": "Approved for release"
+  }
+} 

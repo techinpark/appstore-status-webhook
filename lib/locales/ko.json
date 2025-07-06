@@ -1,0 +1,55 @@
+{
+  "messages": {
+    "appVersionStatusUpdated": "🚀 앱 버전 상태 업데이트",
+    "webhookTestPing": "🔄 웹훅 테스트 핑",
+    "unhandledAppStoreEvent": "📬 처리되지 않은 App Store 이벤트",
+    "appStoreEvent": "App Store 이벤트"
+  },
+  "fields": {
+    "currentStatus": "현재 상태",
+    "previousStatus": "이전 상태",
+    "timestamp": "시간",
+    "versionId": "버전 ID",
+    "pingId": "핑 ID",
+    "rawPayload": "원시 페이로드",
+    "appStore": "App Store"
+  },
+  "actions": {
+    "viewOnAppStore": "App Store에서 보기",
+    "viewOnAppStoreLink": "🔗 App Store에서 보기"
+  },
+  "success": {
+    "slack": "✅ Slack 메시지가 성공적으로 전송되었습니다.",
+    "teams": "✅ Teams 메시지가 성공적으로 전송되었습니다.",
+    "discord": "✅ Discord 메시지가 성공적으로 전송되었습니다."
+  },
+  "error": {
+    "slack": "❌ Slack 메시지 전송 실패:",
+    "teams": "❌ Teams 메시지 전송 실패:",
+    "discord": "❌ Discord 메시지 전송 실패:"
+  },
+  "service": {
+    "activitySubtitle": "App Store Connect 프록시 경유",
+    "summary": "App Store 웹훅"
+  },
+  "status": {
+    "PREPARE_FOR_SUBMISSION": "제출 준비 중",
+    "READY_FOR_REVIEW": "App Store 심사 준비 완료",
+    "WAITING_FOR_REVIEW": "App Store 심사 대기 중",
+    "IN_REVIEW": "App Store 심사 중",
+    "PENDING_CONTRACT": "계약 승인 대기 중",
+    "PENDING_APPLE_RELEASE": "승인 완료, Apple 출시 대기 중",
+    "PENDING_DEVELOPER_RELEASE": "승인 완료, 개발자 출시 대기 중",
+    "PROCESSING_FOR_APP_STORE": "App Store 처리 중",
+    "PROCESSING_FOR_DISTRIBUTION": "배포 처리 중",
+    "READY_FOR_DISTRIBUTION": "배포 준비 완료",
+    "REJECTED": "App Store 거부됨",
+    "METADATA_REJECTED": "메타데이터 거부됨",
+    "DEVELOPER_REJECTED": "개발자가 거부함",
+    "REMOVED_FROM_SALE": "판매 중단됨",
+    "DEVELOPER_REMOVED_FROM_SALE": "개발자가 판매 중단함",
+    "PREORDER_READY_FOR_SALE": "사전 주문 판매 준비 완료",
+    "READY_FOR_SALE": "App Store 출시 중",
+    "APPROVED": "출시 승인됨"
+  }
+} 
