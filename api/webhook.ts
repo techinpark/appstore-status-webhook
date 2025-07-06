@@ -44,21 +44,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // Fetch app information if available
-    const instanceUrl = payload.data.relationships?.instance?.links?.self
-    if (instanceUrl) {
-      console.log('📱 Fetching app information from:', instanceUrl)
-      const appInfo = await AppStoreConnectService.getAppInfoFromPayload(instanceUrl)
-      
-      if (appInfo) {
-        notificationData.appInfo = appInfo
-        console.log('✅ Successfully fetched app info:', {
-          name: appInfo.name,
-          version: appInfo.version,
-          state: appInfo.appStoreState
-        })
-      } else {
-        console.warn('⚠️ Failed to fetch app information')
-      }
+    console.log('📱 Attempting to fetch app information...')
+    const appInfo = await AppStoreConnectService.getAppInfoFromPayload(payload)
+    
+    if (appInfo) {
+      notificationData.appInfo = appInfo
+      console.log('✅ Successfully fetched app info:', {
+        name: appInfo.name,
+        version: appInfo.version,
+        bundleId: appInfo.bundleId,
+        state: appInfo.appStoreState
+      })
+    } else {
+      console.log('ℹ️  App information not available - proceeding with basic notification')
     }
 
     const promises = []

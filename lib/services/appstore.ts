@@ -57,10 +57,31 @@ export class AppStoreConnectService {
   }
 
   /**
-   * Check if App Store Connect API is enabled
+   * Check if App Store Connect API is enabled and properly configured
    */
   private static isApiEnabled(): boolean {
-    return process.env.ENABLE_APP_STORE_API === 'true'
+    const isEnabled = process.env.ENABLE_APP_STORE_API === 'true'
+    if (!isEnabled) {
+      return false
+    }
+
+    // Check for required credentials
+    const keyId = process.env.APP_STORE_CONNECT_KEY_ID
+    const issuerId = process.env.APP_STORE_CONNECT_ISSUER_ID
+    const privateKeyPath = process.env.APP_STORE_CONNECT_PRIVATE_KEY_PATH
+    const privateKeyContent = process.env.APP_STORE_CONNECT_PRIVATE_KEY
+
+    if (!keyId || !issuerId) {
+      console.warn('🔑 App Store Connect API is enabled but missing required credentials (KEY_ID or ISSUER_ID)')
+      return false
+    }
+
+    if (!privateKeyPath && !privateKeyContent) {
+      console.warn('🔑 App Store Connect API is enabled but missing private key (PATH or CONTENT)')
+      return false
+    }
+
+    return true
   }
 
   /**
@@ -87,7 +108,7 @@ export class AppStoreConnectService {
    */
   static async fetchAppStoreVersion(versionId: string): Promise<AppStoreVersionResponse | null> {
     if (!this.isApiEnabled()) {
-      console.log('App Store Connect API is disabled')
+      console.log('🔌 App Store Connect API is disabled or not configured')
       return null
     }
 
@@ -100,14 +121,14 @@ export class AppStoreConnectService {
       })
 
       if (!response.ok) {
-        console.error(`Failed to fetch app store version: ${response.status} ${response.statusText}`)
+        console.error(`❌ Failed to fetch app store version: ${response.status} ${response.statusText}`)
         return null
       }
 
       const data = await response.json()
       return data as AppStoreVersionResponse
     } catch (error) {
-      console.error('Error fetching app store version:', error)
+      console.error('❌ Error fetching app store version:', error)
       return null
     }
   }
@@ -117,7 +138,7 @@ export class AppStoreConnectService {
    */
   static async fetchApp(appId: string): Promise<AppResponse | null> {
     if (!this.isApiEnabled()) {
-      console.log('App Store Connect API is disabled')
+      console.log('🔌 App Store Connect API is disabled or not configured')
       return null
     }
 
@@ -130,14 +151,14 @@ export class AppStoreConnectService {
       })
 
       if (!response.ok) {
-        console.error(`Failed to fetch app: ${response.status} ${response.statusText}`)
+        console.error(`❌ Failed to fetch app: ${response.status} ${response.statusText}`)
         return null
       }
 
       const data = await response.json()
       return data as AppResponse
     } catch (error) {
-      console.error('Error fetching app:', error)
+      console.error('❌ Error fetching app:', error)
       return null
     }
   }
@@ -146,17 +167,25 @@ export class AppStoreConnectService {
    * Extract app information from webhook payload and API responses
    */
   static async getAppInfoFromPayload(payload: any): Promise<AppInfo | null> {
+    if (!this.isApiEnabled()) {
+      console.log('🔌 App Store Connect API is disabled or not configured - skipping app info fetch')
+      return null
+    }
+
     try {
       // Try to get app store version ID from payload
       const versionId = payload.data?.relationships?.instance?.data?.id
       if (!versionId) {
-        console.warn('No version ID found in payload')
+        console.log('⚠️ No version ID found in payload - cannot fetch app info')
         return null
       }
+
+      console.log(`🔍 Fetching app info for version ID: ${versionId}`)
 
       // Fetch app store version info
       const versionResponse = await this.fetchAppStoreVersion(versionId)
       if (!versionResponse) {
+        console.log('⚠️ Failed to fetch app store version data')
         return null
       }
 
@@ -167,6 +196,7 @@ export class AppStoreConnectService {
       // If we have app info in included section, use it
       if (versionResponse.included?.[0]?.attributes) {
         const appAttributes = versionResponse.included[0].attributes
+        console.log('✅ Found app info in included section')
         return {
           id: appId || 'unknown',
           name: appAttributes.name || 'Unknown App',
@@ -178,8 +208,10 @@ export class AppStoreConnectService {
 
       // Otherwise, fetch app info separately
       if (appId) {
+        console.log(`🔍 Fetching separate app info for app ID: ${appId}`)
         const appResponse = await this.fetchApp(appId)
         if (appResponse) {
+          console.log('✅ Successfully fetched separate app info')
           return {
             id: appId,
             name: appResponse.data.attributes.name || 'Unknown App',
@@ -190,9 +222,10 @@ export class AppStoreConnectService {
         }
       }
 
+      console.log('⚠️ No app info available in API response')
       return null
     } catch (error) {
-      console.error('Error extracting app info from payload:', error)
+      console.error('❌ Error extracting app info from payload:', error)
       return null
     }
   }
