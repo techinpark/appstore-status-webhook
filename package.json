@@ -11,13 +11,12 @@
     "webhook",
     "slack",
     "discord",
-    "teams",
     "vercel",
     "serverless",
     "app-store-connect",
     "notifications"
   ],
-  "author": "Your Name",
+  "author": "techinpark",
   "license": "MIT",
   "scripts": {
     "start": "vercel dev",
