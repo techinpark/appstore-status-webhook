@@ -42,8 +42,16 @@ DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/YOUR/DISCORD/WEBHOOK
 # 선택사항: Apple 서명 검증
 SHARED_SECRET=your_shared_secret_here
 
+# 선택사항: App Store Connect API (향상된 앱 정보를 위함)
+ENABLE_APP_STORE_API=true
+APP_STORE_CONNECT_KEY_ID=your_key_id
+APP_STORE_CONNECT_ISSUER_ID=your_issuer_id
+APP_STORE_CONNECT_PRIVATE_KEY_PATH=/path/to/your/private/key.p8
+# 또는 개인 키 내용을 직접 사용:
+# APP_STORE_CONNECT_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY_CONTENT\n-----END PRIVATE KEY-----"
+
 # 선택사항: 커스터마이징
-APP_STORE_URL=https://apps.apple.com/app/your-app/id123456789
+APP_STORE_URL=https://apps.apple.com/app/your-app/id123456789  # API가 비활성화된 경우 폴백으로 사용
 TIMEZONE=Asia/Seoul
 LANGUAGE=ko  # en (영어) 또는 ko (한국어)
 ```
@@ -67,15 +75,72 @@ LANGUAGE=ko  # en (영어) 또는 ko (한국어)
 
 ### Slack
 ```
-🍏 App Store Connect
+🍏 내 앱 이름
 ────────────────────────────────────────
 ✅ 현재 상태: 판매 가능
 📤 이전 상태: Apple 출시 대기 중
-🆔 버전 ID: 12345678
+📱 앱 이름: 내 앱 이름
+🔢 버전: 1.2.3
+📦 번들 ID: com.yourcompany.yourapp
 ```
 
 ### Discord
-상태별 색상과 타임스탬프가 포함된 리치 임베드
+상태별 색상, 타임스탬프, 클릭 가능한 App Store 링크가 포함된 리치 임베드
+
+## 🔗 App Store Connect API 연동
+
+### 향상된 앱 정보
+
+App Store Connect API 연동을 활성화하면 알림에서 풍부한 앱 정보를 얻을 수 있습니다:
+
+- **앱 이름**: App Store Connect에서 가져온 실제 앱 이름
+- **버전 번호**: 현재 버전 문자열
+- **번들 ID**: 앱 번들 식별자
+- **동적 App Store 링크**: 자동으로 생성되는 앱 링크
+- **App Store 상태**: 현재 앱 상태
+
+### App Store Connect API 설정하기
+
+1. **API 키 생성**:
+   - [App Store Connect](https://appstoreconnect.apple.com/)로 이동
+   - **사용자 및 액세스** → **통합** → **App Store Connect API**로 이동
+   - **API 키 생성** 클릭
+   - **액세스**: **개발자** (최소 필요 권한)로 설정
+   - `.p8` 개인 키 파일 다운로드
+
+2. **인증 정보 가져오기**:
+   - **키 ID**: API 키 세부 정보에서 확인
+   - **발급자 ID**: API 키 섹션 헤더에서 확인
+   - **개인 키**: 다운로드한 `.p8` 파일 내용
+
+3. **환경 변수 설정**:
+   ```bash
+   ENABLE_APP_STORE_API=true
+   APP_STORE_CONNECT_KEY_ID=ABC123DEFG
+   APP_STORE_CONNECT_ISSUER_ID=12345678-1234-1234-1234-123456789012
+   APP_STORE_CONNECT_PRIVATE_KEY_PATH=/path/to/AuthKey_ABC123DEFG.p8
+   ```
+
+   **Vercel 배포의 경우**, 개인 키 내용을 직접 사용하세요:
+   ```bash
+   APP_STORE_CONNECT_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----
+   MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg...
+   -----END PRIVATE KEY-----"
+   ```
+
+### API 연동의 장점
+
+- **자동 App Store 링크**: `APP_STORE_URL`을 수동으로 설정할 필요 없음
+- **풍부한 알림**: 알림에 앱 이름, 버전, 번들 ID 포함
+- **다중 앱 지원**: 여러 앱에 대해 자동으로 작동
+- **실시간 데이터**: Apple에서 항상 최신 정보 제공
+
+### 문제 해결
+
+- API 호출이 실패하면 알림이 기본 정보로 폴백됩니다
+- 인증 오류는 로그를 확인하세요
+- API 키가 **개발자** 액세스 수준인지 확인하세요
+- 개인 키 형식을 확인하세요 (`-----BEGIN PRIVATE KEY-----` 포함)
 
 ## 🔧 로컬 개발
 

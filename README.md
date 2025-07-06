@@ -42,8 +42,16 @@ DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/YOUR/DISCORD/WEBHOOK
 # Optional: Apple signature verification
 SHARED_SECRET=your_shared_secret_here
 
+# Optional: App Store Connect API (for enhanced app information)
+ENABLE_APP_STORE_API=true
+APP_STORE_CONNECT_KEY_ID=your_key_id
+APP_STORE_CONNECT_ISSUER_ID=your_issuer_id
+APP_STORE_CONNECT_PRIVATE_KEY_PATH=/path/to/your/private/key.p8
+# OR use private key content directly:
+# APP_STORE_CONNECT_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY_CONTENT\n-----END PRIVATE KEY-----"
+
 # Optional: Customization
-APP_STORE_URL=https://apps.apple.com/app/your-app/id123456789
+APP_STORE_URL=https://apps.apple.com/app/your-app/id123456789  # Used as fallback if API is disabled
 TIMEZONE=Asia/Seoul
 LANGUAGE=ko  # en (English) or ko (Korean)
 ```
@@ -67,15 +75,72 @@ LANGUAGE=ko  # en (English) or ko (Korean)
 
 ### Slack
 ```
-🍏 App Store Connect
+🍏 Your App Name
 ────────────────────────────────────────
 ✅ Current Status: Ready for Sale
 📤 Previous Status: Pending Apple Release
-🆔 Version ID: 12345678
+📱 App Name: Your App Name
+🔢 Version: 1.2.3
+📦 Bundle ID: com.yourcompany.yourapp
 ```
 
 ### Discord
-Rich embed with color-coded status and timestamp
+Rich embed with color-coded status, timestamp, and clickable App Store link
+
+## 🔗 App Store Connect API Integration
+
+### Enhanced App Information
+
+By enabling App Store Connect API integration, you can get rich app information in your notifications:
+
+- **App Name**: Real app name from App Store Connect
+- **Version Number**: Current version string
+- **Bundle ID**: App bundle identifier
+- **Dynamic App Store Links**: Automatically generated links to your app
+- **App Store State**: Current app status
+
+### Setting Up App Store Connect API
+
+1. **Create an API Key**:
+   - Go to [App Store Connect](https://appstoreconnect.apple.com/)
+   - Navigate to **Users and Access** → **Integrations** → **App Store Connect API**
+   - Click **Generate API Key**
+   - Set **Access**: **Developer** (minimum required)
+   - Download the `.p8` private key file
+
+2. **Get Your Credentials**:
+   - **Key ID**: Found in the API key details
+   - **Issuer ID**: Found in the API key section header
+   - **Private Key**: The downloaded `.p8` file content
+
+3. **Configure Environment Variables**:
+   ```bash
+   ENABLE_APP_STORE_API=true
+   APP_STORE_CONNECT_KEY_ID=ABC123DEFG
+   APP_STORE_CONNECT_ISSUER_ID=12345678-1234-1234-1234-123456789012
+   APP_STORE_CONNECT_PRIVATE_KEY_PATH=/path/to/AuthKey_ABC123DEFG.p8
+   ```
+
+   **For Vercel deployment**, use the private key content directly:
+   ```bash
+   APP_STORE_CONNECT_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----
+   MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg...
+   -----END PRIVATE KEY-----"
+   ```
+
+### Benefits of API Integration
+
+- **Automatic App Store Links**: No need to manually set `APP_STORE_URL`
+- **Rich Notifications**: App name, version, and bundle ID in notifications
+- **Multiple Apps**: Works with multiple apps automatically
+- **Real-time Data**: Always up-to-date information from Apple
+
+### Troubleshooting
+
+- If API calls fail, notifications will fall back to basic information
+- Check logs for authentication errors
+- Ensure your API key has **Developer** access level
+- Verify your private key format (should include `-----BEGIN PRIVATE KEY-----`)
 
 ## 🔧 Local Development
 
