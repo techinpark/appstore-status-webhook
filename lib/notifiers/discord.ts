@@ -1,11 +1,11 @@
-import { WebhookPayload } from '../types'
-import { buildDiscordMessage } from '../builders/discord'
-import { getLocaleMessages } from '../utils/locale'
-import { HTTP_CONFIG } from '../constants/config'
+import { NotificationData } from '../types/index.js'
+import { buildDiscordMessage } from '../builders/discord.js'
+import { getLocaleMessages } from '../utils/locale.js'
+import { HTTP_CONFIG } from '../constants/config.js'
 
-export async function sendToDiscord(payload: WebhookPayload, webhookUrl: string): Promise<void> {
+export async function sendToDiscord(notificationData: NotificationData, webhookUrl: string): Promise<void> {
   const messages = await getLocaleMessages()
-  const message = await buildDiscordMessage(payload)
+  const message = await buildDiscordMessage(notificationData)
   if (!message) return
 
   try {
