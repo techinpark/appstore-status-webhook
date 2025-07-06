@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Store Connect Status Webhook</title>
+    <style>
+        :root {
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 32px;
+            --spacing-xl: 40px;
+            --spacing-2xl: 48px;
+            --border-radius: 12px;
+            --border-radius-lg: 20px;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 2rem;
+            --font-size-3xl: 2.5rem;
+            --font-size-4xl: 3.5rem;
+        }
+
+        /* Dark Theme (Default) */
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.9);
+            --text-tertiary: rgba(255, 255, 255, 0.7);
+            --container-bg: rgba(255, 255, 255, 0.05);
+            --container-border: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --code-bg: rgba(0, 0, 0, 0.4);
+            --shadow: rgba(0, 0, 0, 0.3);
+            --shadow-hover: rgba(0, 0, 0, 0.4);
+            --github-bg: #24292e;
+            --github-bg-hover: #1a1e22;
+        }
+
+        /* Light Theme */
+        [data-theme="light"] {
+            --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            --text-primary: #1a202c;
+            --text-secondary: #2d3748;
+            --text-tertiary: #4a5568;
+            --container-bg: rgba(255, 255, 255, 0.9);
+            --container-border: rgba(0, 0, 0, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --code-bg: rgba(0, 0, 0, 0.05);
+            --shadow: rgba(0, 0, 0, 0.1);
+            --shadow-hover: rgba(0, 0, 0, 0.15);
+            --github-bg: #24292e;
+            --github-bg-hover: #1a1e22;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            background: var(--bg-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            padding: var(--spacing-md);
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--container-bg);
+            border: 1px solid var(--container-border);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-lg);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px var(--shadow);
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px var(--shadow-hover);
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            padding: var(--spacing-2xl);
+            background: var(--container-bg);
+            border-radius: var(--border-radius-lg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--container-border);
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+        
+        .icon {
+            font-size: var(--font-size-4xl);
+            margin-bottom: var(--spacing-md);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        h1 {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--spacing-md);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            background: #28a745;
+            color: white;
+            border-radius: 20px;
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--spacing-md);
+            font-weight: 500;
+        }
+        
+        .subtitle {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--spacing-xl);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .webhook-info {
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-md);
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            font-size: var(--font-size-base);
+            color: var(--text-tertiary);
+        }
+
+        .webhook-info p {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .webhook-info p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .api-endpoint {
+            font-family: 'Monaco', 'Courier New', monospace;
+            background: var(--code-bg);
+            padding: var(--spacing-sm);
+            border-radius: var(--spacing-xs);
+            margin: var(--spacing-sm) 0;
+            font-size: var(--font-size-sm);
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        
+        .github-link {
+            display: inline-block;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            background: var(--github-bg);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: var(--font-size-lg);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+        
+        .github-link:hover {
+            background: var(--github-bg-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--shadow-hover);
+        }
+        
+        .github-link:before {
+            content: '🐙';
+            margin-right: var(--spacing-sm);
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: var(--spacing-sm);
+            }
+
+            .theme-toggle {
+                top: var(--spacing-sm);
+                right: var(--spacing-sm);
+                width: 44px;
+                height: 44px;
+            }
+            
+            .container {
+                padding: var(--spacing-lg);
+            }
+            
+            h1 {
+                font-size: var(--font-size-2xl);
+            }
+            
+            .subtitle {
+                font-size: var(--font-size-lg);
+            }
+
+            .icon {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: var(--spacing-md);
+            }
+
+            .webhook-info {
+                padding: var(--spacing-sm);
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+        <span class="theme-icon">🌙</span>
+    </button>
+    
+    <div class="container">
+        <div class="icon">🍎</div>
+        <h1>App Store Connect Status Webhook</h1>
+        <div class="status-badge">✅ Service Online</div>
+        <p class="subtitle">
+            A serverless webhook proxy that receives App Store Connect<br>
+            webhook events and forwards them to Slack and Discord<br>
+            with beautiful, localized notifications.
+        </p>
+        
+        <div class="webhook-info">
+            <p><strong>Webhook Endpoint:</strong></p>
+            <div class="api-endpoint">POST /api/webhook</div>
+            <p>For setup instructions and documentation, please visit the GitHub page below.</p>
+        </div>
+        
+        <a href="https://github.com/techinpark/appstore-status-webhook" class="github-link" target="_blank">
+            View Documentation on GitHub
+        </a>
+    </div>
+    
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.querySelector('.theme-icon');
+            const currentTheme = body.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            const themeIcon = document.querySelector('.theme-icon');
+            
+            document.body.setAttribute('data-theme', savedTheme);
+            themeIcon.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+        });
+
+        // 3초 후 자동으로 GitHub 페이지로 이동 (선택사항)
+        // setTimeout(() => {
+        //     window.location.href = 'https://github.com/techinpark/appstore-status-webhook';
+        // }, 3000);
+    </script>
+</body>
+</html> 
