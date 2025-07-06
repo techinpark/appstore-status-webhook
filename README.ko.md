@@ -53,7 +53,7 @@ APP_STORE_CONNECT_PRIVATE_KEY_PATH=/path/to/your/private/key.p8
 # 선택사항: 커스터마이징
 APP_STORE_URL=https://apps.apple.com/app/your-app/id123456789  # API가 비활성화된 경우 폴백으로 사용
 TIMEZONE=Asia/Seoul
-LANGUAGE=ko  # en (영어) 또는 ko (한국어)
+LANGUAGE=ko  # en (영어), ko (한국어), ja (일본어), zh (중국어), es (스페인어), fr (프랑스어), de (독일어)
 ```
 
 ### 3. App Store Connect 설정
@@ -169,6 +169,11 @@ npm run test
 
 - **영어** (`en`): 기본 언어
 - **한국어** (`ko`): 완전한 한국어 지원
+- **일본어** (`ja`): 완전한 일본어 지원
+- **중국어** (`zh`): 완전한 중국어 지원
+- **스페인어** (`es`): 완전한 스페인어 지원
+- **프랑스어** (`fr`): 완전한 프랑스어 지원
+- **독일어** (`de`): 완전한 독일어 지원
 
 원하는 언어로 `LANGUAGE` 환경 변수를 설정하세요.
 

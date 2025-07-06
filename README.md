@@ -53,7 +53,7 @@ APP_STORE_CONNECT_PRIVATE_KEY_PATH=/path/to/your/private/key.p8
 # Optional: Customization
 APP_STORE_URL=https://apps.apple.com/app/your-app/id123456789  # Used as fallback if API is disabled
 TIMEZONE=Asia/Seoul
-LANGUAGE=ko  # en (English) or ko (Korean)
+LANGUAGE=ko  # en (English), ko (Korean), ja (Japanese), zh (Chinese), es (Spanish), fr (French), de (German)
 ```
 
 ### 3. Configure App Store Connect
@@ -169,6 +169,11 @@ The project supports multiple languages:
 
 - **English** (`en`): Default language
 - **Korean** (`ko`): Complete Korean localization
+- **Japanese** (`ja`): Complete Japanese localization
+- **Chinese** (`zh`): Complete Chinese localization  
+- **Spanish** (`es`): Complete Spanish localization
+- **French** (`fr`): Complete French localization
+- **German** (`de`): Complete German localization
 
 Set the `LANGUAGE` environment variable to your preferred language.
 

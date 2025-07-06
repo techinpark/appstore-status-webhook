@@ -1,0 +1,55 @@
+{
+  "messages": {
+    "appVersionStatusUpdated": "🚀 应用版本状态更新",
+    "webhookTestPing": "🔄 Webhook 测试 Ping",
+    "unhandledAppStoreEvent": "📬 未处理的App Store事件",
+    "appStoreEvent": "App Store 事件"
+  },
+  "fields": {
+    "currentStatus": "当前状态",
+    "previousStatus": "之前状态",
+    "timestamp": "时间戳",
+    "versionId": "版本ID",
+    "pingId": "Ping ID",
+    "rawPayload": "原始载荷",
+    "appStore": "App Store"
+  },
+  "actions": {
+    "viewOnAppStore": "在App Store中查看",
+    "viewOnAppStoreLink": "🔗 在App Store中查看"
+  },
+  "success": {
+    "slack": "✅ Slack消息发送成功。",
+    "teams": "✅ Teams消息发送成功。",
+    "discord": "✅ Discord消息发送成功。"
+  },
+  "error": {
+    "slack": "❌ Slack消息发送失败：",
+    "teams": "❌ Teams消息发送失败：",
+    "discord": "❌ Discord消息发送失败："
+  },
+  "service": {
+    "activitySubtitle": "通过App Store Connect代理",
+    "summary": "App Store Webhook"
+  },
+  "status": {
+    "PREPARE_FOR_SUBMISSION": "准备提交",
+    "READY_FOR_REVIEW": "准备App Store审核",
+    "WAITING_FOR_REVIEW": "等待App Store审核",
+    "IN_REVIEW": "App Store审核中",
+    "PENDING_CONTRACT": "等待合同批准",
+    "PENDING_APPLE_RELEASE": "已批准，等待Apple发布",
+    "PENDING_DEVELOPER_RELEASE": "已批准，等待开发者发布",
+    "PROCESSING_FOR_APP_STORE": "App Store处理中",
+    "PROCESSING_FOR_DISTRIBUTION": "分发处理中",
+    "READY_FOR_DISTRIBUTION": "准备分发",
+    "REJECTED": "App Store拒绝",
+    "METADATA_REJECTED": "元数据被拒绝",
+    "DEVELOPER_REJECTED": "开发者拒绝",
+    "REMOVED_FROM_SALE": "已下架",
+    "DEVELOPER_REMOVED_FROM_SALE": "开发者下架",
+    "PREORDER_READY_FOR_SALE": "预订销售准备就绪",
+    "READY_FOR_SALE": "在App Store上架",
+    "APPROVED": "发布已批准"
+  }
+} 

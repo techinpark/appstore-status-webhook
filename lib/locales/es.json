@@ -1,0 +1,55 @@
+{
+  "messages": {
+    "appVersionStatusUpdated": "🚀 Estado de Versión de App Actualizado",
+    "webhookTestPing": "🔄 Ping de Prueba de Webhook",
+    "unhandledAppStoreEvent": "📬 Evento de App Store No Manejado",
+    "appStoreEvent": "Evento de App Store"
+  },
+  "fields": {
+    "currentStatus": "Estado Actual",
+    "previousStatus": "Estado Anterior",
+    "timestamp": "Marca de Tiempo",
+    "versionId": "ID de Versión",
+    "pingId": "ID de Ping",
+    "rawPayload": "Carga Útil Cruda",
+    "appStore": "App Store"
+  },
+  "actions": {
+    "viewOnAppStore": "Ver en App Store",
+    "viewOnAppStoreLink": "🔗 Ver en App Store"
+  },
+  "success": {
+    "slack": "✅ Mensaje de Slack enviado exitosamente.",
+    "teams": "✅ Mensaje de Teams enviado exitosamente.",
+    "discord": "✅ Mensaje de Discord enviado exitosamente."
+  },
+  "error": {
+    "slack": "❌ Error al enviar mensaje de Slack:",
+    "teams": "❌ Error al enviar mensaje de Teams:",
+    "discord": "❌ Error al enviar mensaje de Discord:"
+  },
+  "service": {
+    "activitySubtitle": "App Store Connect vía Proxy",
+    "summary": "Webhook de App Store"
+  },
+  "status": {
+    "PREPARE_FOR_SUBMISSION": "Preparando envío",
+    "READY_FOR_REVIEW": "Listo para revisión de App Store",
+    "WAITING_FOR_REVIEW": "Esperando revisión de App Store",
+    "IN_REVIEW": "Siendo revisado por App Store",
+    "PENDING_CONTRACT": "Esperando aprobación de contrato",
+    "PENDING_APPLE_RELEASE": "Aprobado, esperando lanzamiento de Apple",
+    "PENDING_DEVELOPER_RELEASE": "Aprobado, esperando lanzamiento del desarrollador",
+    "PROCESSING_FOR_APP_STORE": "Procesando para App Store",
+    "PROCESSING_FOR_DISTRIBUTION": "Procesando para distribución",
+    "READY_FOR_DISTRIBUTION": "Listo para distribución",
+    "REJECTED": "Rechazado por App Store",
+    "METADATA_REJECTED": "Metadatos rechazados",
+    "DEVELOPER_REJECTED": "Rechazado por desarrollador",
+    "REMOVED_FROM_SALE": "Removido de la venta",
+    "DEVELOPER_REMOVED_FROM_SALE": "Removido de la venta por desarrollador",
+    "PREORDER_READY_FOR_SALE": "Listo para venta de preorden",
+    "READY_FOR_SALE": "En vivo en App Store",
+    "APPROVED": "Aprobado para lanzamiento"
+  }
+} 

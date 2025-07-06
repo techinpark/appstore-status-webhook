@@ -1,0 +1,55 @@
+{
+  "messages": {
+    "appVersionStatusUpdated": "🚀 アプリバージョンステータス更新",
+    "webhookTestPing": "🔄 Webhook テストピング",
+    "unhandledAppStoreEvent": "📬 未処理のApp Storeイベント",
+    "appStoreEvent": "App Store イベント"
+  },
+  "fields": {
+    "currentStatus": "現在のステータス",
+    "previousStatus": "以前のステータス",
+    "timestamp": "タイムスタンプ",
+    "versionId": "バージョンID",
+    "pingId": "ピングID",
+    "rawPayload": "生ペイロード",
+    "appStore": "App Store"
+  },
+  "actions": {
+    "viewOnAppStore": "App Storeで見る",
+    "viewOnAppStoreLink": "🔗 App Storeで見る"
+  },
+  "success": {
+    "slack": "✅ Slackメッセージが正常に送信されました。",
+    "teams": "✅ Teamsメッセージが正常に送信されました。",
+    "discord": "✅ Discordメッセージが正常に送信されました。"
+  },
+  "error": {
+    "slack": "❌ Slackメッセージの送信に失敗しました：",
+    "teams": "❌ Teamsメッセージの送信に失敗しました：",
+    "discord": "❌ Discordメッセージの送信に失敗しました："
+  },
+  "service": {
+    "activitySubtitle": "App Store Connect プロキシ経由",
+    "summary": "App Store Webhook"
+  },
+  "status": {
+    "PREPARE_FOR_SUBMISSION": "提出準備中",
+    "READY_FOR_REVIEW": "App Store 審査準備完了",
+    "WAITING_FOR_REVIEW": "App Store 審査待ち",
+    "IN_REVIEW": "App Store 審査中",
+    "PENDING_CONTRACT": "契約承認待ち",
+    "PENDING_APPLE_RELEASE": "承認済み、Apple リリース待ち",
+    "PENDING_DEVELOPER_RELEASE": "承認済み、開発者リリース待ち",
+    "PROCESSING_FOR_APP_STORE": "App Store 処理中",
+    "PROCESSING_FOR_DISTRIBUTION": "配布処理中",
+    "READY_FOR_DISTRIBUTION": "配布準備完了",
+    "REJECTED": "App Store によって却下",
+    "METADATA_REJECTED": "メタデータ却下",
+    "DEVELOPER_REJECTED": "開発者による却下",
+    "REMOVED_FROM_SALE": "販売停止",
+    "DEVELOPER_REMOVED_FROM_SALE": "開発者による販売停止",
+    "PREORDER_READY_FOR_SALE": "予約販売準備完了",
+    "READY_FOR_SALE": "App Store で販売中",
+    "APPROVED": "リリース承認済み"
+  }
+} 
