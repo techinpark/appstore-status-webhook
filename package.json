@@ -1,0 +1,32 @@
+{
+  "name": "appstore-status-webhook",
+  "version": "1.0.0",
+  "description": "A serverless webhook proxy that receives App Store Connect webhook events and forwards them to Slack, Discord, and Teams with beautiful, localized notifications.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/appstore-status-webhook.git"
+  },
+  "keywords": [
+    "appstore",
+    "webhook",
+    "slack",
+    "discord",
+    "teams",
+    "vercel",
+    "serverless",
+    "app-store-connect",
+    "notifications"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "scripts": {
+    "start": "vercel dev",
+    "test": "curl -X POST http://localhost:3000/api/webhook -H \"Content-Type: application/json\" -d '{\"test\": \"data\"}'"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@vercel/node": "^3.0.0",
+    "typescript": "^5.0.0"
+  }
+} 
