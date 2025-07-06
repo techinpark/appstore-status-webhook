@@ -1,17 +1,17 @@
-# 🍎 App Store Connect 상태 웹훅
+# App Store Connect Status Webhook
 
 [![Vercel로 배포하기](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftechinpark%2Fappstore-status-webhook)
 
 *[🇺🇸 English README](README.md)*
 
-App Store Connect 웹훅 이벤트를 받아서 Slack, Discord로 아름다운 다국어 알림을 전송하는 서버리스 웹훅 프록시입니다.
+App Store Connect 웹훅 이벤트를 받아서 Slack, Discord로 다국어 알림을 보내주는 서버리스 웹훅 프록시입니다.
 
 ## ✨ 주요 기능
 
 - 🔔 **다중 플랫폼 알림**: Slack, Discord 지원
-- 🌐 **다국어 지원**: 한국어와 영어 완전 지원
-- 🔒 **보안**: Apple 서명 검증 기능
-- 🎨 **아름다운 포맷팅**: 상태별 색상과 이모지가 포함된 리치 임베드
+- 🌐 **다국어 지원**: 한국어와 영어 지원
+- 🔒 **보안**: Apple 서명 검증
+- 🎨 **예쁜 포맷팅**: 상태별 색상과 이모지 포함
 - ⚡ **서버리스**: Vercel에 즉시 배포
 - 📱 **App Store 특화**: 모든 App Store Connect 웹훅 이벤트 처리
 
@@ -32,7 +32,7 @@ vercel --prod
 
 ### 2. 환경 변수 설정
 
-Vercel 프로젝트 설정에서 다음 환경 변수를 설정하세요:
+Vercel 프로젝트 설정에서 다음 환경 변수를 설정하면 됩니다:
 
 ```bash
 # 필수: 최소 하나의 웹훅 URL
@@ -85,18 +85,18 @@ LANGUAGE=ko  # en (영어), ko (한국어), ja (일본어), zh (중국어), es (
 ```
 
 ### Discord
-상태별 색상, 타임스탬프, 클릭 가능한 App Store 링크가 포함된 리치 임베드
+상태별 색상, 시간, App Store 링크가 포함된 리치 임베드
 
 ## 🔗 App Store Connect API 연동
 
 ### 향상된 앱 정보
 
-App Store Connect API 연동을 활성화하면 알림에서 풍부한 앱 정보를 얻을 수 있습니다:
+App Store Connect API 연동을 활성화하면 알림에서 더 많은 앱 정보를 볼 수 있습니다:
 
 - **앱 이름**: App Store Connect에서 가져온 실제 앱 이름
-- **버전 번호**: 현재 버전 문자열
-- **번들 ID**: 앱 번들 식별자
-- **동적 App Store 링크**: 자동으로 생성되는 앱 링크
+- **버전 번호**: 현재 버전
+- **번들 ID**: 앱 번들 ID
+- **App Store 링크**: 자동으로 생성되는 앱 링크
 - **App Store 상태**: 현재 앱 상태
 
 ### App Store Connect API 설정하기
@@ -121,7 +121,7 @@ App Store Connect API 연동을 활성화하면 알림에서 풍부한 앱 정�
    APP_STORE_CONNECT_PRIVATE_KEY_PATH=/path/to/AuthKey_ABC123DEFG.p8
    ```
 
-   **Vercel 배포의 경우**, 개인 키 내용을 직접 사용하세요:
+   **Vercel 배포할 때는** 개인 키 내용을 직접 사용하면 됩니다:
    ```bash
    APP_STORE_CONNECT_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----
    MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg...
@@ -130,17 +130,17 @@ App Store Connect API 연동을 활성화하면 알림에서 풍부한 앱 정�
 
 ### API 연동의 장점
 
-- **자동 App Store 링크**: `APP_STORE_URL`을 수동으로 설정할 필요 없음
-- **풍부한 알림**: 알림에 앱 이름, 버전, 번들 ID 포함
-- **다중 앱 지원**: 여러 앱에 대해 자동으로 작동
-- **실시간 데이터**: Apple에서 항상 최신 정보 제공
+- **자동 App Store 링크**: `APP_STORE_URL`을 따로 설정할 필요 없음
+- **더 자세한 알림**: 알림에 앱 이름, 버전, 번들 ID 포함
+- **여러 앱 지원**: 여러 앱에 대해 자동으로 작동
+- **최신 정보**: Apple에서 항상 최신 정보 제공
 
 ### 문제 해결
 
-- API 호출이 실패하면 알림이 기본 정보로 폴백됩니다
-- 인증 오류는 로그를 확인하세요
-- API 키가 **개발자** 액세스 수준인지 확인하세요
-- 개인 키 형식을 확인하세요 (`-----BEGIN PRIVATE KEY-----` 포함)
+- API 호출이 실패하면 알림이 기본 정보로 돌아갑니다
+- 인증 오류는 로그를 확인해보세요
+- API 키가 **개발자** 권한인지 확인해보세요
+- 개인 키 형식을 확인해보세요 (`-----BEGIN PRIVATE KEY-----` 포함)
 
 ## 🔧 로컬 개발
 
@@ -165,29 +165,29 @@ npm run test
 
 ## 🌐 다국어 지원
 
-프로젝트는 다음 언어를 지원합니다:
+지원하는 언어:
 
 - **영어** (`en`): 기본 언어
-- **한국어** (`ko`): 완전한 한국어 지원
-- **일본어** (`ja`): 완전한 일본어 지원
-- **중국어** (`zh`): 완전한 중국어 지원
-- **스페인어** (`es`): 완전한 스페인어 지원
-- **프랑스어** (`fr`): 완전한 프랑스어 지원
-- **독일어** (`de`): 완전한 독일어 지원
+- **한국어** (`ko`): 한국어 지원
+- **일본어** (`ja`): 일본어 지원
+- **중국어** (`zh`): 중국어 지원
+- **스페인어** (`es`): 스페인어 지원
+- **프랑스어** (`fr`): 프랑스어 지원
+- **독일어** (`de`): 독일어 지원
 
-원하는 언어로 `LANGUAGE` 환경 변수를 설정하세요.
+원하는 언어로 `LANGUAGE` 환경 변수를 설정하면 됩니다.
 
 ## 🔒 보안
 
 ### Apple 서명 검증
 
-`SHARED_SECRET` 환경 변수를 설정하여 서명 검증을 활성화하세요:
+`SHARED_SECRET` 환경 변수를 설정하면 서명 검증을 활성화할 수 있습니다:
 
 ```bash
 SHARED_SECRET=appstore_connect에서_받은_shared_secret
 ```
 
-이렇게 하면 Apple에서 보낸 진짜 웹훅만 처리됩니다.
+이렇게 하면 Apple에서 보낸 진짜 웹훅만 처리합니다.
 
 ## 🎯 API 참조
 
@@ -246,13 +246,13 @@ appstore-status-webhook/
 
 ## 🤝 기여하기
 
-기여를 환영합니다! 언제든 Pull Request를 제출해주세요.
+기여 환영합니다! 언제든 Pull Request 보내주세요.
 
-1. 저장소를 포크하세요
-2. 기능 브랜치를 생성하세요 (`git checkout -b feature/amazing-feature`)
-3. 변경사항을 커밋하세요 (`git commit -m 'Add amazing feature'`)
-4. 브랜치에 푸시하세요 (`git push origin feature/amazing-feature`)
-5. Pull Request를 열어주세요
+1. 저장소를 포크
+2. 기능 브랜치 생성 (`git checkout -b feature/amazing-feature`)
+3. 변경사항 커밋 (`git commit -m 'Add amazing feature'`)
+4. 브랜치에 푸시 (`git push origin feature/amazing-feature`)
+5. Pull Request 생성
 
 ## 📜 라이센스
 

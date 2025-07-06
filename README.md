@@ -1,4 +1,4 @@
-# 🍎 App Store Connect Status Webhook
+# App Store Connect Status Webhook
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftechinpark%2Fappstore-status-webhook)
 
