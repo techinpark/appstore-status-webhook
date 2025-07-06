@@ -4,7 +4,7 @@
   "description": "A serverless webhook proxy that receives App Store Connect webhook events and forwards them to Slack, Discord, and Teams with beautiful, localized notifications.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/appstore-status-webhook.git"
+    "url": "https://github.com/techinpark/appstore-status-webhook.git"
   },
   "keywords": [
     "appstore",

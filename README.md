@@ -1,6 +1,6 @@
 # 🍎 App Store Connect Status Webhook
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyour-username%2Fappstore-status-webhook)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftechinpark%2Fappstore-status-webhook)
 
 *[🇰🇷 한국어 README](README.ko.md)*
 
@@ -19,12 +19,12 @@ A serverless webhook proxy that receives App Store Connect webhook events and fo
 
 ### 1. Deploy to Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyour-username%2Fappstore-status-webhook)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftechinpark%2Fappstore-status-webhook)
 
 Or clone and deploy manually:
 
 ```bash
-git clone https://github.com/your-username/appstore-status-webhook.git
+git clone https://github.com/techinpark/appstore-status-webhook.git
 cd appstore-status-webhook
 npm install
 vercel --prod
@@ -81,7 +81,7 @@ Rich embed with color-coded status and timestamp
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/appstore-status-webhook.git
+git clone https://github.com/techinpark/appstore-status-webhook.git
 cd appstore-status-webhook
 
 # Install dependencies
@@ -196,4 +196,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ---
 
-**Need help?** [Open an issue](https://github.com/your-username/appstore-status-webhook/issues) or [start a discussion](https://github.com/your-username/appstore-status-webhook/discussions). 
+**Need help?** [Open an issue](https://github.com/techinpark/appstore-status-webhook/issues) or [start a discussion](https://github.com/techinpark/appstore-status-webhook/discussions). 

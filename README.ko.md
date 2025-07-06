@@ -1,6 +1,6 @@
 # 🍎 App Store Connect 상태 웹훅
 
-[![Vercel로 배포하기](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyour-username%2Fappstore-status-webhook)
+[![Vercel로 배포하기](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftechinpark%2Fappstore-status-webhook)
 
 *[🇺🇸 English README](README.md)*
 
@@ -19,12 +19,12 @@ App Store Connect 웹훅 이벤트를 받아서 Slack, Discord로 아름다운 �
 
 ### 1. Vercel에 배포
 
-[![Vercel로 배포하기](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyour-username%2Fappstore-status-webhook)
+[![Vercel로 배포하기](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftechinpark%2Fappstore-status-webhook)
 
 또는 수동으로 클론하여 배포하기:
 
 ```bash
-git clone https://github.com/your-username/appstore-status-webhook.git
+git clone https://github.com/techinpark/appstore-status-webhook.git
 cd appstore-status-webhook
 npm install
 vercel --prod
@@ -81,7 +81,7 @@ LANGUAGE=ko  # en (영어) 또는 ko (한국어)
 
 ```bash
 # 저장소 클론
-git clone https://github.com/your-username/appstore-status-webhook.git
+git clone https://github.com/techinpark/appstore-status-webhook.git
 cd appstore-status-webhook
 
 # 의존성 설치
@@ -196,4 +196,4 @@ appstore-status-webhook/
 
 ---
 
-**도움이 필요하신가요?** [이슈를 열어주세요](https://github.com/your-username/appstore-status-webhook/issues) 또는 [토론을 시작하세요](https://github.com/your-username/appstore-status-webhook/discussions). 
+**도움이 필요하신가요?** [이슈를 열어주세요](https://github.com/techinpark/appstore-status-webhook/issues) 또는 [토론을 시작하세요](https://github.com/techinpark/appstore-status-webhook/discussions). 
